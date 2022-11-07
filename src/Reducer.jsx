@@ -3,11 +3,30 @@
 
 const reducer = (state, action) => {
   if (action === "increment") {
-    return state + 1;
+    return {count: state.count + state.move,
+            move: state.move,
+           };
+    
   } else if (action === "decrement") {
-    return state - 1;
+    return {count: state.count - state.move,
+            move: state.move,
+           };
+
+    
   } else if (action === "reset") {
-    return 0;
+    return {count: 0,
+            move: state.move,
+             };
+            }
+
+    else if (action.type === "moveUpdate")
+  {
+    return {
+      count: state.count,
+      move: action.move,
+    };
+  
+    
   } else {
     throw new Error();
   }

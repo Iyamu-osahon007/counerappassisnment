@@ -4,13 +4,13 @@ import Slide from "./Slider"
 
 
 function Counter() {
-  const [count, dispatch] = useReducer(reducer, 0);
+  const [state, dispatch] = useReducer(reducer, { count: 0, move: 1 });
 
   return (
     <div className="container">
       <div className="card">
         <h1> Counter Application </h1>
-        <h3> {count} </h3>
+        <h3> {state.count} </h3>
         <div>
           <button className="btn1" onClick={() => dispatch("increment")}>increment
           </button>
@@ -23,8 +23,13 @@ function Counter() {
         <div>
           <Slide
             min={1}
-            ma={100}
-            onchange={() => ({})}
+            max={100}
+            onchange={(value) => 
+              dispatch({
+                type: "stepUpdate",
+                step: value,
+              })
+            }
 
           />
 
